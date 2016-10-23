@@ -146,7 +146,7 @@ public class PetProvider extends ContentProvider {
             throw new IllegalArgumentException("Pet requires a name");
         }
 
-        if (gender != null && !validGender(gender)){
+        if (gender != null && !validGender(gender)) {
             throw new IllegalArgumentException("Pet requires a valid gender");
         }
 
@@ -188,7 +188,7 @@ public class PetProvider extends ContentProvider {
                 // so we know which row to update. Selection will be "_id=?" and selection
                 // arguments will be a String array containing the actual ID.
                 selection = PetEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 return updatePet(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
@@ -214,7 +214,7 @@ public class PetProvider extends ContentProvider {
             throw new IllegalArgumentException("Pet requires a name");
         }
 
-        if (gender != null && !validGender(gender)){
+        if (gender != null && !validGender(gender)) {
             throw new IllegalArgumentException("Pet requires a valid gender");
         }
 
@@ -228,7 +228,7 @@ public class PetProvider extends ContentProvider {
 
         int newRow = database.update(PetEntry.TABLE_NAME, values, selection, selectionArgs);
 
-        if (newRow < 1){
+        if (newRow < 1) {
             Log.i(LOG_TAG, "updatePet: failed");
         }
         return newRow;
@@ -248,12 +248,13 @@ public class PetProvider extends ContentProvider {
             case PET_ID:
                 // Delete a single row given by the ID in the URI
                 selection = PetEntry._ID + "=?";
-                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
                 return database.delete(PetEntry.TABLE_NAME, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
         }
     }
+
     /**
      * Returns the MIME type of data for the content URI.
      */
